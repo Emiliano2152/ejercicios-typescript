@@ -6,32 +6,32 @@
  */
 
 class Personaje {
-  nombre: string;
-  vida: number;
+  nombreMiembro: string;
+  vidaMiembro: number;
 
-  constructor(nombre: string, vida: number) {
-    this.nombre = nombre;
-    this.vida = vida;
+  constructor(nombreInput: string, vidaInput: number) {
+    this.nombreMiembro = nombreInput;
+    this.vidaMiembro = vidaInput;
   }
 
   recibirDanio(danio: number) {
-    this.vida -= danio;
+    this.vidaMiembro -= danio;
   }
 }
-let heroe = new Personaje("Link", 100);
-let villano = new Personaje("Ganon", 150);
+let heroe = new Personaje('Link', 100);
+let villano = new Personaje('Ganon', 150);
 
-console.log(heroe.nombre);
-console.log(heroe.vida);
-console.log(villano.vida);
+console.log(heroe.nombreMiembro);
+console.log(heroe.vidaMiembro);
+console.log(villano.vidaMiembro);
 
 heroe.recibirDanio(30);
-console.log(heroe.vida);
-console.log(villano.vida);
+console.log(heroe.vidaMiembro);
+console.log(villano.vidaMiembro);
 
 villano.recibirDanio(50);
-console.log(heroe.vida);
-console.log(villano.vida);
+console.log(heroe.vidaMiembro);
+console.log(villano.vidaMiembro);
 
 // Predicción 1:
 // Predicción 2:

@@ -6,10 +6,10 @@
  */
 
 function saludar() {
-  console.log("Hola Mundo");
+  console.log('Hola Mundo');
 }
 saludar();
 
-// Predicción:
+// Predicción:Hola Mundo
 
 export {};

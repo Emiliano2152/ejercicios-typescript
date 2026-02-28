@@ -10,6 +10,6 @@ for (let i = 0; i < valores.length; i++) {
   console.log(valores[i]);
 }
 
-// Predicción:
+// Predicción:5 , 10 , 15 uno abajo del otro
 
 export {};

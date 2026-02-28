@@ -5,9 +5,9 @@
  * Escribe tu predicción ANTES de ejecutar el código.
  */
 
-let frutas = ["manzana", "banana", "naranja"];
+let frutas = ['manzana', 'banana', 'naranja'];
 console.log(frutas.length);
 
-// Predicción:
+// Predicción:3
 
 export {};

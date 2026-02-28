@@ -13,7 +13,7 @@ console.log(global);
 modificarGlobal();
 console.log(global);
 
-// Predicción 1:
-// Predicción 2:
+// Predicción 1:100
+// Predicción 2:200
 
 export {};

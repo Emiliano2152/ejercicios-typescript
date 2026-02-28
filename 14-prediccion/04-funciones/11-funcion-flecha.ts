@@ -10,6 +10,6 @@ const restar = (a: number, b: number) => {
 };
 console.log(restar(10, 3));
 
-// Predicción:
+// Predicción:7
 
 export {};

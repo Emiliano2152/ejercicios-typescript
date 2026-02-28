@@ -8,10 +8,10 @@
 function mostrarMensaje(msg: string) {
   console.log(msg);
 }
-let valor = mostrarMensaje("Hola");
+let valor = mostrarMensaje('Hola');
 console.log(valor);
 
-// Predicción 1:
-// Predicción 2:
+// Predicción 1:undefined
+// Predicción 2:Hola
 
 export {};

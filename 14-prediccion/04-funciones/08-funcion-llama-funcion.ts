@@ -13,6 +13,6 @@ function calcularArea(lado: number) {
 }
 console.log(calcularArea(5));
 
-// Predicción:
+// Predicción:25
 
 export {};

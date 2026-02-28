@@ -12,6 +12,6 @@ function calcular() {
 }
 console.log(calcular());
 
-// Predicción:
+// Predicción:30
 
 export {};

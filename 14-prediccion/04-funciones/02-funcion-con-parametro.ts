@@ -6,10 +6,10 @@
  */
 
 function saludarPersona(nombre: string) {
-  console.log("Hola " + nombre);
+  console.log('Hola ' + nombre);
 }
-saludarPersona("Mario");
+saludarPersona('Mario');
 
-// Predicción:
+// Predicción: Hola Mario
 
 export {};

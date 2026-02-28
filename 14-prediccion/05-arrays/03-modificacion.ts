@@ -9,6 +9,6 @@ let puntos = [100, 200, 300];
 puntos[1] = 250;
 console.log(puntos);
 
-// Predicción:
+// Predicción:100, 250, 300
 
 export {};

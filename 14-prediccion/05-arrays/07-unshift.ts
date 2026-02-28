@@ -9,6 +9,6 @@ let niveles = [2, 3, 4];
 niveles.unshift(1);
 console.log(niveles);
 
-// Predicción:
+// Predicción:1, 2, 3, 4
 
 export {};

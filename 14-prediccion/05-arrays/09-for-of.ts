@@ -5,11 +5,11 @@
  * Escribe tu predicción ANTES de ejecutar el código.
  */
 
-let colores = ["rojo", "verde", "azul"];
+let colores = ['rojo', 'verde', 'azul'];
 for (let color of colores) {
   console.log(color);
 }
 
-// Predicción:
+// Predicción:rojo, verde, azul uno abajo del otro
 
 export {};

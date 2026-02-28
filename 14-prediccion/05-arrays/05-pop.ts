@@ -5,12 +5,12 @@
  * Escribe tu predicción ANTES de ejecutar el código.
  */
 
-let items = ["espada", "escudo", "poción"];
+let items = ['espada', 'escudo', 'poción'];
 let ultimo = items.pop();
 console.log(ultimo);
 console.log(items);
 
-// Predicción 1:
-// Predicción 2:
+// Predicción 1:pocion
+// Predicción 2:espada, escudo
 
 export {};

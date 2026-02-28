@@ -6,12 +6,12 @@
  */
 
 function esPar(n: number) {
-  return n % 2 === 0 ? "Par" : "Impar";
+  return n % 2 === 0 ? 'Par' : 'Impar';
 }
 console.log(esPar(4));
 console.log(esPar(7));
 
-// Predicción 1:
-// Predicción 2:
+// Predicción 1:Par
+// Predicción 2:Impar
 
 export {};

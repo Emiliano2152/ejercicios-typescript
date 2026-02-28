@@ -14,6 +14,6 @@ function cuentaRegresiva(n: number): void {
 }
 cuentaRegresiva(3);
 
-// Predicción:
+// Predicción:3,2,1,0
 
 export {};

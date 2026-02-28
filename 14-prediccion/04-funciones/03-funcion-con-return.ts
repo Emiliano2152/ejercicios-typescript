@@ -11,6 +11,6 @@ function sumar(a: number, b: number) {
 let resultado = sumar(5, 3);
 console.log(resultado);
 
-// Predicción:
+// Predicción:8
 
 export {};

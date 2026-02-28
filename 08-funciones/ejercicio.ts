@@ -19,24 +19,27 @@ export function aplicarDanio(danio: number): number {
   // ========== TU CÓDIGO AQUÍ ==========
   // Esta es una función simple que solo retorna el daño
   // La usaremos en los siguientes ejercicios
+  return danio;
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
 export function aplicarDanioDoble(danio: number): number {
   // ========== TU CÓDIGO AQUÍ ==========
   // Retorna el doble del daño
+  return danio * 2;
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
 export function aplicarDanioTriple(danio: number): number {
   // ========== TU CÓDIGO AQUÍ ==========
   // Retorna el triple del daño
+  return danio * 3;
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -48,7 +51,9 @@ export function aplicarModificador(
   // Aplica la función modificador al daño y retorna el resultado
   // Ejemplo: aplicarModificador(10, aplicarDanioDoble) debería retornar 20
 
-  throw new Error("Función no implementada");
+  return modificador(danio);
+
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -67,7 +72,9 @@ export function componerDos(
   //          primero aplica triple: 10 * 3 = 30
   //          luego aplica doble: 30 * 2 = 60
 
-  throw new Error("Función no implementada");
+  return (x) => f(g(x));
+
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -81,8 +88,13 @@ export function aplicarVarias(
   // Ejemplo: aplicarVarias(10, [aplicarDanioDoble, aplicarDanioTriple])
   //          primero: 10 * 2 = 20
   //          luego: 20 * 3 = 60
+  let resultado = valor;
+  for (let i of funciones) {
+    resultado = i(resultado);
+  }
+  return resultado;
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -98,7 +110,7 @@ export function crearMultiplicador(factor: number): (x: number) => number {
   //   duplicar(5) // retorna 10
   //   duplicar(8) // retorna 16
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -109,7 +121,7 @@ export function crearSumador(cantidad: number): (x: number) => number {
   //   const sumarDiez = crearSumador(10);
   //   sumarDiez(5) // retorna 15
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -120,7 +132,7 @@ export function crearAplicadorDeBonus(
   // Retorna una función que suma el bonus al daño
   // Similar a crearSumador pero con nombres específicos del dominio
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -140,7 +152,7 @@ export function aplicarNVeces(
   //          segunda vez: 10 * 2 = 20
   //          tercera vez: 20 * 2 = 40
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -157,7 +169,7 @@ export function aplicarHastaLimite(
   //          5 -> 10 -> 20 -> 40 -> 80 -> 160 (se pasó!)
   //          retorna 80
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -176,7 +188,7 @@ export function aplicarATodos(
   // Ejemplo: aplicarATodos([1, 2, 3], aplicarDanioDoble)
   //          retorna [2, 4, 6]
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -188,7 +200,7 @@ export function transformarNombres(
   // Aplica la función transformar a cada nombre
   // NO USES .map() todavía, hazlo con un bucle for
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -206,7 +218,7 @@ export function filtrarPorCondicion(
   // Ejemplo: filtrarPorCondicion([1, 5, 10, 15], (x) => x > 5)
   //          retorna [10, 15]
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -218,7 +230,7 @@ export function encontrarEnemigosDebiles(
   // Retorna solo los enemigos con vida menor o igual a vidaMaxima
   // NO USES .filter() todavía, hazlo con un bucle for
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -240,7 +252,7 @@ export function acumular(
   //          3 + 3 = 6
   //          6 + 4 = 10
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -249,7 +261,7 @@ export function sumarTodos(valores: number[]): number {
   // Usa la función acumular para sumar todos los valores
   // Ejemplo: sumarTodos([1, 2, 3, 4]) retorna 10
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -258,7 +270,7 @@ export function multiplicarTodos(valores: number[]): number {
   // Usa la función acumular para multiplicar todos los valores
   // Ejemplo: multiplicarTodos([2, 3, 4]) retorna 24
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -271,7 +283,7 @@ export function duplicarValores(valores: number[]): number[] {
   // Usa .map() para duplicar cada valor
   // Ejemplo: duplicarValores([1, 2, 3]) retorna [2, 4, 6]
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -282,7 +294,7 @@ export function obtenerNombres(
   // Usa .map() para obtener solo los nombres
   // Ejemplo: obtenerNombres([{nombre: "Link", nivel: 5}]) retorna ["Link"]
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -293,7 +305,7 @@ export function filtrarPorNivel(
   // ========== TU CÓDIGO AQUÍ ==========
   // Usa .filter() para retornar solo los personajes con nivel >= nivelMinimo
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -303,7 +315,7 @@ export function filtrarVivos(
   // ========== TU CÓDIGO AQUÍ ==========
   // Usa .filter() para retornar solo los enemigos con vida > 0
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -312,7 +324,7 @@ export function calcularDanioTotal(danios: number[]): number {
   // Usa .reduce() para sumar todos los daños
   // Ejemplo: calcularDanioTotal([10, 20, 30]) retorna 60
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -322,7 +334,7 @@ export function calcularVidaTotal(
   // ========== TU CÓDIGO AQUÍ ==========
   // Usa .reduce() para sumar la vida de todos los enemigos
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -341,7 +353,7 @@ export function calcularDanioTotalConBonus(
   //          map: [15, 25]
   //          reduce: 40
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -352,7 +364,7 @@ export function obtenerNombresDeVivos(
   // 1. Usa .filter() para obtener solo los enemigos vivos (vida > 0)
   // 2. Usa .map() para obtener solo los nombres
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -365,7 +377,7 @@ export function calcularExperienciaTotal(
   // 2. Usa .map() para calcular la experiencia de cada uno (nivel * experienciaPorNivel)
   // 3. Usa .reduce() para sumar toda la experiencia
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -382,7 +394,7 @@ export function crearFiltro<T>(
   //   const filtrarMayoresA10 = crearFiltro((x: number) => x > 10);
   //   filtrarMayoresA10([5, 15, 8, 20]) // retorna [15, 20]
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -395,7 +407,7 @@ export function crearTransformador<T, U>(
   //   const obtenerLongitudes = crearTransformador((s: string) => s.length);
   //   obtenerLongitudes(["hola", "mundo"]) // retorna [4, 5]
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -413,7 +425,7 @@ export function crearPipeline<T>(
   //   );
   //   procesarDanio(5) // (5 * 2 = 10) + 10 = 20 * 3 = 60
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -431,7 +443,7 @@ export function cachear<T, U>(f: (x: T) => U): (x: T) => U {
   //   funcionRapida(5); // llamadas = 1 (no incrementa!), retorna 10
   //   funcionRapida(3); // llamadas = 2, retorna 6
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -463,7 +475,7 @@ export function aplicarBuffATodos(
   // El ataque aumenta por buffAtaque y la vida por buffVida
   // IMPORTANTE: Retorna nuevos objetos, no modifiques los originales
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -476,7 +488,7 @@ export function obtenerEnemigosMasFuertes(
   // Luego usa .sort() para ordenarlos de mayor a menor nivel
   // (mayor nivel primero)
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -489,7 +501,7 @@ export function calcularRecompensaTotal(
   // 2. Mapea para obtener la recompensa de cada uno multiplicada por el multiplicador
   // 3. Reduce para sumar todas las recompensas
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -502,7 +514,7 @@ export function obtenerEquipoBalanceado(
   // 3. Ordena por poder de menor a mayor
   // 4. Toma solo los primeros 3 (usa .slice(0, 3))
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -518,7 +530,7 @@ export function crearSistemaDeNiveles(
   //   expNecesaria(2) // 400
   //   expNecesaria(3) // 900
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -535,6 +547,6 @@ export function crearCalculadorDeDanio(
   //   calcularDanio(50, false) // 60
   //   calcularDanio(50, true)  // 120
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }

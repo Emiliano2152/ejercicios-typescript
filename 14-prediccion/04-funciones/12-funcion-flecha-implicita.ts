@@ -8,6 +8,6 @@
 const triplicar = (n: number) => n * 3;
 console.log(triplicar(4));
 
-// Predicción:
+// Predicción:12
 
 export {};

@@ -11,7 +11,7 @@ function duplicar(n: number) {
 console.log(duplicar(5));
 console.log(duplicar(10));
 
-// Predicción 1:
-// Predicción 2:
+// Predicción 1:10
+// Predicción 2:20
 
 export {};
