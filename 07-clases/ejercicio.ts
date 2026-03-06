@@ -26,6 +26,14 @@ export class Personaje {
   experiencia: number;
 
   constructor(nombre: string, nivel: number = 1) {
+    ((this.nombre = nombre),
+      (this.nivel = nivel),
+      (this.vidaMaxima = nivel * 10),
+      (this.vida = this.vidaMaxima),
+      (this.manaMaximo = nivel * 5),
+      (this.mana = this.manaMaximo),
+      (this.oro = 0),
+      (this.experiencia = 0));
     // ========== TU CÓDIGO AQUÍ ==========
     // Inicializa las propiedades del personaje:
     // - nombre: el nombre proporcionado
@@ -36,16 +44,15 @@ export class Personaje {
     // - mana: igual a manaMaximo
     // - oro: 0
     // - experiencia: 0
-
-    throw new Error("Constructor no implementado");
     // ====================================
   }
 
   estaVivo(): boolean {
+    return this.vida > 0;
+
     // ========== TU CÓDIGO AQUÍ ==========
     // Retorna true si la vida es mayor a 0
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 
@@ -53,8 +60,14 @@ export class Personaje {
     // ========== TU CÓDIGO AQUÍ ==========
     // Reduce la vida del personaje por el daño recibido
     // La vida no puede ser menor a 0
+    if (this.vida - danio < 0) {
+      this.vida = 0;
+    } else {
+      this.vida -= danio;
+    }
 
-    throw new Error("Método no implementado");
+    //this.vida= Math.max(0, this.vida - danio) es una opcion mas limpia
+
     // ====================================
   }
 
@@ -62,8 +75,8 @@ export class Personaje {
     // ========== TU CÓDIGO AQUÍ ==========
     // Aumenta la vida del personaje por la cantidad especificada
     // La vida no puede superar vidaMaxima
+    this.vida = Math.min(this.vidaMaxima, this.vida + cantidad);
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 
@@ -71,8 +84,12 @@ export class Personaje {
     // ========== TU CÓDIGO AQUÍ ==========
     // Si el personaje tiene suficiente mana, reduce el mana y retorna true
     // Si no tiene suficiente mana, retorna false sin cambiar el mana
+    if (this.mana - cantidad >= 0) {
+      this.mana -= cantidad;
+      return true;
+    }
+    return false;
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 
@@ -81,7 +98,7 @@ export class Personaje {
     // Aumenta el mana del personaje por la cantidad especificada
     // El mana no puede superar manaMaximo
 
-    throw new Error("Método no implementado");
+    this.mana = Math.min(this.manaMaximo, this.mana + cantidad);
     // ====================================
   }
 
@@ -96,16 +113,33 @@ export class Personaje {
     // - manaMaximo aumenta en 5
     // - mana se restaura a manaMaximo
     // Retorna true si subió de nivel, false en caso contrario
+    this.experiencia += cantidad;
 
-    throw new Error("Método no implementado");
+    let subioNivel = false;
+
+    while (this.experiencia >= 100) {
+      this.experiencia -= 100;
+      this.nivel++;
+      this.vidaMaxima += 10;
+      this.manaMaximo += 5;
+      subioNivel = true;
+    }
+
+    if (subioNivel) {
+      this.vida = this.vidaMaxima;
+      this.mana = this.manaMaximo;
+    }
+
+    return subioNivel;
+
     // ====================================
   }
 
   recogerOro(cantidad: number): void {
     // ========== TU CÓDIGO AQUÍ ==========
     // Aumenta el oro del personaje
+    this.oro += cantidad;
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 
@@ -113,8 +147,13 @@ export class Personaje {
     // ========== TU CÓDIGO AQUÍ ==========
     // Si el personaje tiene suficiente oro, reduce el oro y retorna true
     // Si no tiene suficiente oro, retorna false sin cambiar el oro
+    if (this.oro >= cantidad) {
+      this.oro -= cantidad;
+      return true;
+    } else {
+      return false;
+    }
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 }
@@ -148,16 +187,22 @@ export class Enemigo {
     // - danio: el daño proporcionado
     // - oroPorDerrota: el oro por derrota proporcionado (por defecto 10)
     // - experienciaPorDerrota: la experiencia por derrota proporcionada (por defecto 20)
+    this.nombre = nombre;
+    this.nivel = nivel;
+    this.vidaMaxima = nivel * 8;
+    this.vida = this.vidaMaxima;
+    this.danio = danio;
+    this.oroPorDerrota = oroPorDerrota;
+    this.experienciaPorDerrota = experienciaPorDerrota;
 
-    throw new Error("Constructor no implementado");
     // ====================================
   }
 
   estaVivo(): boolean {
     // ========== TU CÓDIGO AQUÍ ==========
     // Retorna true si la vida es mayor a 0
+    return this.vida > 0;
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 
@@ -165,8 +210,8 @@ export class Enemigo {
     // ========== TU CÓDIGO AQUÍ ==========
     // Reduce la vida del enemigo por el daño recibido
     // La vida no puede ser menor a 0
+    this.vida = Math.max(0, this.vida - danio);
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 
@@ -175,17 +220,21 @@ export class Enemigo {
     // Si el enemigo está vivo, hace que el personaje reciba daño
     // igual al daño del enemigo
 
-    throw new Error("Método no implementado");
+    if (this.vida > 0) {
+      personaje.recibirDanio(this.danio);
+    }
     // ====================================
   }
 
   obtenerRecompensas(): { oro: number; experiencia: number } {
     // ========== TU CÓDIGO AQUÍ ==========
     // Retorna un objeto con el oro y la experiencia que otorga este enemigo
-
-    throw new Error("Método no implementado");
-    // ====================================
+    return {
+      oro: this.oroPorDerrota,
+      experiencia: this.experienciaPorDerrota,
+    };
   }
+  // ====================================
 }
 
 // ============================================================
@@ -194,20 +243,23 @@ export class Enemigo {
 
 export class Item {
   nombre: string;
-  tipo: "curacion" | "mana" | "danio";
+  tipo: 'curacion' | 'mana' | 'danio';
   valor: number;
   precio: number;
 
   constructor(
     nombre: string,
-    tipo: "curacion" | "mana" | "danio",
+    tipo: 'curacion' | 'mana' | 'danio',
     valor: number,
     precio: number
   ) {
     // ========== TU CÓDIGO AQUÍ ==========
     // Inicializa todas las propiedades con los valores proporcionados
+    ((this.nombre = nombre),
+      (this.tipo = tipo),
+      (this.valor = valor),
+      (this.precio = precio));
 
-    throw new Error("Constructor no implementado");
     // ====================================
   }
 
@@ -219,8 +271,19 @@ export class Item {
     // - "danio": no hace nada (los items de daño se usan contra enemigos)
     // Retorna un mensaje descriptivo de lo que hizo el item
     // Ejemplo: "Poción de vida restaura 50 puntos de vida"
+    if (this.tipo === 'curacion') {
+      personaje.curar(this.valor);
+      return `${this.nombre} restaura ${this.valor} puntos de vida`;
+    }
+    if (this.tipo === 'mana') {
+      personaje.recuperarMana(this.valor);
+      return `${this.nombre} restaura ${this.valor} puntos de mana`;
+    }
+    if (this.tipo === 'danio') {
+      return `${this.nombre} no tiene efecto al usarlo en el personaje`;
+    }
+    return `${this.nombre} no tiene efecto`; //tuve que agregar esto porque sino me tiraba error de que no todas las rutas retornaban un string
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 
@@ -230,8 +293,18 @@ export class Item {
     // Si el tipo no es "danio", no hace nada
     // Retorna un mensaje descriptivo
     // Ejemplo: "Bomba causa 30 de daño al enemigo"
+    if (this.tipo === 'curacion') {
+      return `${this.nombre} no tiene efecto al usarlo en el personaje`;
+    }
+    if (this.tipo === 'mana') {
+      return `${this.nombre} no tiene efecto al usarlo en el personaje`;
+    }
+    if (this.tipo === 'danio') {
+      enemigo.recibirDanio(this.valor);
+      return `${this.nombre} causa ${this.valor} de daño al enemigo`;
+    }
+    return `${this.nombre} no tiene efecto`; //lo mismo que en el metodo anterior
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 }
@@ -248,7 +321,8 @@ export class Moneda {
     // ========== TU CÓDIGO AQUÍ ==========
     // Inicializa las propiedades
 
-    throw new Error("Constructor no implementado");
+    this.valor = valor;
+    this.esRara = esRara;
     // ====================================
   }
 
@@ -256,16 +330,20 @@ export class Moneda {
     // ========== TU CÓDIGO AQUÍ ==========
     // Retorna el valor de la moneda
     // Si es rara, retorna el doble del valor
+    if (this.esRara === true) {
+      return this.valor * 2;
+    } else {
+      return this.valor;
+    }
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 
   recoger(personaje: Personaje): void {
     // ========== TU CÓDIGO AQUÍ ==========
     // Hace que el personaje recoja el oro de esta moneda
+    personaje.recogerOro(this.obtenerValor());
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 }
@@ -282,8 +360,9 @@ export class Inventario {
     // ========== TU CÓDIGO AQUÍ ==========
     // Inicializa el array de items vacío
     // Guarda la capacidad máxima
+    this.items = [];
+    this.capacidadMaxima = capacidadMaxima;
 
-    throw new Error("Constructor no implementado");
     // ====================================
   }
 
@@ -291,8 +370,13 @@ export class Inventario {
     // ========== TU CÓDIGO AQUÍ ==========
     // Si hay espacio en el inventario, agrega el item y retorna true
     // Si no hay espacio, retorna false
+    if (this.items.length < this.capacidadMaxima) {
+      this.items.push(item);
+      return true;
+    } else {
+      return false;
+    }
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 
@@ -301,8 +385,15 @@ export class Inventario {
     // Si el índice es válido, usa el item en el personaje,
     // lo elimina del inventario y retorna el mensaje del item
     // Si el índice no es válido, retorna null
+    if (indice >= 0 && indice < this.items.length) {
+      let i = this.items[indice];
+      let mensaje = i.usar(personaje);
+      this.items.splice(indice, 1);
+      return mensaje;
+    }
 
-    throw new Error("Método no implementado");
+    return null;
+
     // ====================================
   }
 
@@ -311,16 +402,19 @@ export class Inventario {
     // Si el índice es válido, usa el item contra el enemigo,
     // lo elimina del inventario y retorna el mensaje del item
     // Si el índice no es válido, retorna null
+    if (indice < 0 || indice >= this.items.length) {
+      return null;
+    }
+    let mensaje = this.items[indice].usarContra(enemigo);
+    this.items.splice(indice, 1);
+    return mensaje;
 
-    throw new Error("Método no implementado");
     // ====================================
   }
 
-  obtenerItemsPorTipo(tipo: "curacion" | "mana" | "danio"): Item[] {
+  obtenerItemsPorTipo(tipo: 'curacion' | 'mana' | 'danio'): Item[] {
     // ========== TU CÓDIGO AQUÍ ==========
     // Retorna un array con todos los items del tipo especificado
-
-    throw new Error("Método no implementado");
     // ====================================
   }
 
@@ -328,7 +422,7 @@ export class Inventario {
     // ========== TU CÓDIGO AQUÍ ==========
     // Retorna la suma del precio de todos los items
 
-    throw new Error("Método no implementado");
+    throw new Error('Método no implementado');
     // ====================================
   }
 
@@ -336,7 +430,7 @@ export class Inventario {
     // ========== TU CÓDIGO AQUÍ ==========
     // Retorna true si el inventario está lleno
 
-    throw new Error("Método no implementado");
+    throw new Error('Método no implementado');
     // ====================================
   }
 }
@@ -348,7 +442,7 @@ export class Inventario {
 export function combatir(
   personaje: Personaje,
   enemigo: Enemigo
-): "victoria" | "derrota" | "en_curso" {
+): 'victoria' | 'derrota' | 'en_curso' {
   // ========== TU CÓDIGO AQUÍ ==========
   // Simula UN TURNO de combate:
   // 1. El personaje ataca al enemigo causando daño igual al nivel del personaje
@@ -357,20 +451,20 @@ export function combatir(
   // 4. Si el personaje murió, retorna "derrota"
   // 5. Si ambos siguen vivos, retorna "en_curso"
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
 export function combateCompleto(
   personaje: Personaje,
   enemigo: Enemigo
-): "victoria" | "derrota" {
+): 'victoria' | 'derrota' {
   // ========== TU CÓDIGO AQUÍ ==========
   // Simula un combate completo hasta que uno de los dos muera
   // Usa la función combatir en un bucle
   // Retorna "victoria" si el personaje ganó o "derrota" si perdió
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -379,7 +473,7 @@ export function encontrarEnemigoMasDebil(enemigos: Enemigo[]): Enemigo | null {
   // Encuentra y retorna el enemigo con menos vida actual
   // Retorna null si el array está vacío
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -388,7 +482,7 @@ export function encontrarEnemigoMasFuerte(enemigos: Enemigo[]): Enemigo | null {
   // Encuentra y retorna el enemigo con más daño
   // Retorna null si el array está vacío
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -396,18 +490,21 @@ export function calcularDanioTotal(enemigos: Enemigo[]): number {
   // ========== TU CÓDIGO AQUÍ ==========
   // Calcula y retorna el daño total que harían todos los enemigos vivos
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
-export function derrotarTodos(personaje: Personaje, enemigos: Enemigo[]): number {
+export function derrotarTodos(
+  personaje: Personaje,
+  enemigos: Enemigo[]
+): number {
   // ========== TU CÓDIGO AQUÍ ==========
   // El personaje intenta derrotar a todos los enemigos uno por uno
   // usando combateCompleto
   // Retorna el número de enemigos derrotados antes de morir
   // (o todos si el personaje sobrevive)
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -425,7 +522,7 @@ export class Tienda {
     // - Poción de mana (mana, 30, precio 25)
     // - Bomba (danio, 40, precio 50)
 
-    throw new Error("Constructor no implementado");
+    throw new Error('Constructor no implementado');
     // ====================================
   }
 
@@ -434,7 +531,7 @@ export class Tienda {
     // Retorna un array de strings con la información de cada item
     // Formato: "nombre - tipo - valor - precio oro"
 
-    throw new Error("Método no implementado");
+    throw new Error('Método no implementado');
     // ====================================
   }
 
@@ -452,7 +549,7 @@ export class Tienda {
     // 3. Retorna true
     // En caso contrario, retorna false
 
-    throw new Error("Método no implementado");
+    throw new Error('Método no implementado');
     // ====================================
   }
 
@@ -460,7 +557,7 @@ export class Tienda {
     // ========== TU CÓDIGO AQUÍ ==========
     // Agrega un item a la tienda
 
-    throw new Error("Método no implementado");
+    throw new Error('Método no implementado');
     // ====================================
   }
 }
@@ -477,7 +574,7 @@ export function recolectarMonedas(
   // El personaje recoge todas las monedas del array
   // Retorna el total de oro recolectado
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -487,6 +584,6 @@ export function generarMonedasAleatorias(cantidad: number): Moneda[] {
   // El 20% de las monedas deberían ser raras
   // Usa Math.random() para generar valores aleatorios
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }

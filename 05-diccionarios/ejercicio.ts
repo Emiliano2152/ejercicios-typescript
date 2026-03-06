@@ -7,12 +7,6 @@
  * INSTRUCCIONES:
  * 1. Completa las funciones usando objetos como diccionarios
  */
-let precioItem = {
-  armadura: 2500,
-  casco: 2000,
-  botas: 1500,
-  espada: 9000,
-};
 
 export function obtenerPrecioItem(
   precios: Record<string, number>,
@@ -26,10 +20,7 @@ export function obtenerPrecioItem(
   } else {
     return 0;
   }
-
-  throw new Error("Función no implementada");
 }
-console.log(obtenerPrecioItem(precioItem, "casco"));
 
 // ====================================
 
@@ -51,7 +42,6 @@ export function agregarItemInventario(
 
   return nuevoInventario;
 }
-console.log(agregarItemInventario(precioItem, "pantalones", 2100));
 
 // ====================================
 
@@ -59,13 +49,12 @@ export function contarItems(inventario: Record<string, number>): number {
   // ========== TU CÓDIGO AQUÍ ==========
   // Retorna la cantidad total de items en el inventario
   // (suma todas las cantidades)
-  let total = 0;
-  for (let item in inventario) {
-    total += inventario[item];
+  let total: number = 0;
+  for (let number of Object.values(inventario)) {
+    total += number;
   }
   return total;
 }
-console.log(contarItems(precioItem));
 
 // ====================================
 
@@ -75,23 +64,16 @@ export function obtenerItemsDisponibles(
   // ========== TU CÓDIGO AQUÍ ==========
   // Retorna un array con los nombres de todos los items que tienen
   // cantidad mayor a 0
-  const items: string[] = [];
-  for (let item in inventario) {
-    if (inventario[item] > 0) items.push(item);
+  let itemsDisponibles: string[] = [];
+  for (let i in inventario) {
+    if (inventario[i] > 0) {
+      itemsDisponibles.push(i);
+    }
   }
-
-  return items;
+  return itemsDisponibles;
 }
-console.log(obtenerItemsDisponibles(precioItem));
 
 // ====================================
-
-let cantidadItem = {
-  armadura: 1,
-  casco: 2,
-  botas: 1,
-  espada: 1,
-};
 
 export function calcularValorTotalInventario(
   inventario: Record<string, number>,
@@ -101,18 +83,13 @@ export function calcularValorTotalInventario(
   // Calcula el valor total del inventario multiplicando la cantidad
   // de cada item por su precio
   // Si un item no tiene precio, ignóralo
-  let valorTotal = 0;
-  for (let i in inventario) {
-    if (precios[i] == undefined) {
-      continue;
-    } else {
-      valorTotal += precios[i] * inventario[i];
-    }
-  }
+  let valorInventario: number = 0;
 
-  return valorTotal;
+  for (let i in inventario) {
+    if (precios[i] !== undefined) valorInventario += inventario[i] * precios[i];
+  }
+  return valorInventario;
 }
-console.log(calcularValorTotalInventario(cantidadItem, precioItem));
 
 // ====================================
 
@@ -126,10 +103,10 @@ export function fusionarInventarios(
   const inventarioFusionado: Record<string, number> = { ...inventario1 };
 
   for (let i in inventario2) {
-    if (inventarioFusionado[i] === undefined) {
-      inventarioFusionado[i] = inventario2[i];
-    } else {
+    if (i in inventarioFusionado) {
       inventarioFusionado[i] += inventario2[i];
+    } else {
+      inventarioFusionado[i] = inventario2[i];
     }
   }
   return inventarioFusionado;
@@ -143,14 +120,16 @@ export function obtenerItemMasCaro(
   // ========== TU CÓDIGO AQUÍ ==========
   // Encuentra el item con el precio más alto
   // Retorna su nombre, o null si el diccionario está vacío
-  let items = Object.keys(precios);
-  if (items.length === 0) {
+
+  let precioItem: number = -Infinity;
+  let itemMasCaro: string = '';
+  if (Object.keys(precios).length === 0) {
     return null;
   }
-  let itemMasCaro = items[0];
-  for (let i of items) {
-    if (precios[i] > precios[itemMasCaro]) {
-      itemMasCaro = i;
+  for (let item in precios) {
+    if (precios[item] > precioItem) {
+      precioItem = precios[item];
+      itemMasCaro = item;
     }
   }
   return itemMasCaro;
