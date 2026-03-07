@@ -8,8 +8,6 @@
  * 1. Completa las funciones y clases usando objetos de TypeScript
  */
 
-import { strict } from "node:assert";
-
 // Tipo para un personaje del juego
 export interface Personaje {
   nombre: string;
@@ -49,7 +47,6 @@ export function crearPersonaje(nombre: string, nivel: number): Personaje {
 
   return nuevoPersonaje;
 
-  throw new Error("Función no implementada");
   // ====================================
 }
 
@@ -62,7 +59,6 @@ export function estaVivo(personaje: Personaje): boolean {
     return false;
   }
 
-  throw new Error("Función no implementada");
   // ====================================
 }
 
@@ -107,7 +103,6 @@ export function usarHabilidad(
     return null;
   }
 
-  throw new Error("Función no implementada");
   // ====================================
 }
 

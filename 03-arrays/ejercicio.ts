@@ -6,34 +6,33 @@
  * INSTRUCCIONES:
  * 1. Completa las funciones usando métodos de arrays y operaciones básicas
  */
-let inventario = ["elemento0", "elemento3", "elemento2"];
+let inventario = ['elemento0', 'elemento3', 'elemento2'];
 
 export function agregarItem(inventario: string[], nuevoItem: string): string[] {
   // ========== TU CÓDIGO AQUÍ ==========
   // Agrega el nuevoItem al inventario y retorna el nuevo array
   inventario.push(nuevoItem);
   return inventario;
-  throw new Error("Función no implementada");
 
   // ====================================
 }
-agregarItem(inventario, "hola");
+agregarItem(inventario, 'hola');
 console.log(inventario);
-agregarItem(inventario, "chau");
+agregarItem(inventario, 'chau');
 console.log(inventario);
 
 let enemigos = [
-  "pedro(derrotado)",
-  "juan(derrotado)",
-  "cacho(derrotado)",
-  "pepe",
+  'pedro(derrotado)',
+  'juan(derrotado)',
+  'cacho(derrotado)',
+  'pepe',
 ];
 export function contarEnemigosDerrotados(enemigos: string[]): number {
   // ========== TU CÓDIGO AQUÍ ==========
   // Retorna la cantidad de enemigos en el array
   let contador: number = 0;
   for (let enemigo of enemigos) {
-    if (enemigo.includes("derrotado")) {
+    if (enemigo.includes('derrotado')) {
       contador++;
     }
   }
@@ -51,7 +50,7 @@ export function encontrarItemMasRaro(items: string[]): string | null {
   // Si el array está vacío, retorna null
   return items[0] ?? null;
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 console.log(encontrarItemMasRaro(items));
@@ -66,13 +65,13 @@ export function calcularPuntajeTotal(puntajes: number[]): number {
   }
   return contador;
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
 }
 console.log(calcularPuntajeTotal(puntajes));
 
 // ====================================
 
-let inventary = ["Espada rara", "Escudo rara", "Poción rara", "armadura"];
+let inventary = ['Espada rara', 'Escudo rara', 'Poción rara', 'armadura'];
 let rareinventary: string[] = [];
 export function filtrarItemsRaros(items: string[]): string[] {
   // ========== TU CÓDIGO AQUÍ ==========
@@ -80,21 +79,21 @@ export function filtrarItemsRaros(items: string[]): string[] {
   // Ejemplo: ["Espada rara", "Escudo", "Poción rara"] -> ["Espada rara", "Poción rara"]
 
   for (let e of inventary) {
-    if (e.includes("rara") || e.includes("raro")) {
+    if (e.includes('rara') || e.includes('raro')) {
       rareinventary.push(e);
     }
   }
   return rareinventary;
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
 }
 console.log(filtrarItemsRaros(inventary));
 
 // ====================================
 
 let farmeo = [
-  { nombre: "Goblin", nivel: 5 },
-  { nombre: "Orco", nivel: 10 },
+  { nombre: 'Goblin', nivel: 5 },
+  { nombre: 'Orco', nivel: 10 },
 ];
 let nombres: string[] = [];
 export function obtenerNombresEnemigos(
@@ -108,7 +107,7 @@ export function obtenerNombresEnemigos(
     nombres.push(e.nombre);
   }
   return nombres;
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
 }
 console.log(obtenerNombresEnemigos(farmeo));
 
@@ -132,7 +131,7 @@ export function encontrarEnemigoMasFuerte(
   }
   return enemigomasfuerte.nombre;
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 console.log(encontrarEnemigoMasFuerte(farmeo));

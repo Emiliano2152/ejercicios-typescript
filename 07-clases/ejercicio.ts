@@ -416,21 +416,26 @@ export class Inventario {
     // ========== TU CÓDIGO AQUÍ ==========
     // Retorna un array con todos los items del tipo especificado
     // ====================================
+    return this.items.filter((item) => item.tipo === tipo);
   }
 
   calcularValorTotal(): number {
     // ========== TU CÓDIGO AQUÍ ==========
     // Retorna la suma del precio de todos los items
+    let precioTotal: number = 0;
+    for (let item of this.items) {
+      precioTotal += item.precio;
+    }
+    return precioTotal;
 
-    throw new Error('Método no implementado');
     // ====================================
   }
 
   estaLleno(): boolean {
     // ========== TU CÓDIGO AQUÍ ==========
     // Retorna true si el inventario está lleno
+    return this.items.length >= this.capacidadMaxima;
 
-    throw new Error('Método no implementado');
     // ====================================
   }
 }
