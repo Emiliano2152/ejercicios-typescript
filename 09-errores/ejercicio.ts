@@ -11,6 +11,34 @@
  * 4. Crea clases de error personalizadas
  */
 
+import { error, log } from 'console';
+
+// export interface Error {
+//   division: string; = ('No se puede dividir por cero');
+//   nivel: number;
+//   vida: number;
+// }
+
+// # Tipos de datos
+// Naturales: 0 1 2 3 4 5 6
+// Errores: Error(XXXX)
+
+// 4
+const divisionPorCeroError = new Error('No se puede dividir por cero');
+
+// class ErrorDeDivisionPorCero extends Error {
+//   a: number;
+
+//   constructor(a: number, ...params: any) {
+//     // Pass remaining arguments (including vendor specific ones) to parent constructor
+//     super(...params);
+
+//     this.a = a;
+//   }
+// }
+
+//   new ErrorDeDivisionPorCero(5, 'bazMessage').a
+
 // ============================================================
 // PARTE 1: Conceptos básicos - throw y try/catch
 // ============================================================
@@ -19,8 +47,12 @@ export function dividir(a: number, b: number): number {
   // ========== TU CÓDIGO AQUÍ ==========
   // Si b es 0, lanza un error con el mensaje "No se puede dividir por cero"
   // Si no, retorna a / b
+  if (b === 0) {
+    throw new Error('No se puede dividir por cero');
+  }
+  return a / b;
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -29,8 +61,12 @@ export function obtenerElemento(array: number[], indice: number): number {
   // Si el índice está fuera de rango (menor a 0 o mayor/igual a la longitud),
   // lanza un error con el mensaje "Índice fuera de rango"
   // Si no, retorna el elemento en ese índice
+  if (indice < 0 || indice >= array.length) {
+    throw new Error('Índice fuera de rango');
+  }
+  return array[indice];
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -41,7 +77,13 @@ export function dividirSeguro(a: number, b: number): number | null {
   // Si no hay error, retorna el resultado
   // Pista: usa la función dividir que ya creaste
 
-  throw new Error("Función no implementada");
+  try {
+    return dividir(a, b);
+  } catch (error) {
+    return null;
+  }
+
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -54,8 +96,13 @@ export function obtenerElementoSeguro(
   // Si hay un error, retorna null
   // Si no hay error, retorna el elemento
   // Pista: usa la función obtenerElemento que ya creaste
+  try {
+    return obtenerElemento(array, indice);
+  } catch (error) {
+    return null;
+  }
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -80,8 +127,18 @@ export function crearPersonaje(
   // - Si nivel es menor a 1: "El nivel debe ser al menos 1"
   // - Si vida es menor a 0: "La vida no puede ser negativa"
   // Si todo es válido, retorna el personaje
+  if (nombre === '') {
+    throw new Error('El nombre no puede estar vacío');
+  }
+  if (nivel < 1) {
+    throw new Error('El nivel debe ser al menos 1');
+  }
+  if (vida < 0) {
+    throw new Error('La vida no puede ser negativa');
+  }
+  return { nombre, nivel, vida };
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -91,7 +148,7 @@ export function subirNivel(personaje: Personaje, niveles: number): Personaje {
   // Si no, retorna un nuevo personaje con el nivel aumentado
   // (el nivel aumenta en 'niveles', la vida aumenta en niveles * 10)
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -101,7 +158,7 @@ export function usarItem(personaje: Personaje, nombreItem: string): Personaje {
   // Si el nombreItem está vacío, lanza error: "El nombre del item no puede estar vacío"
   // Si todo es válido, retorna el mismo personaje (sin cambios por ahora)
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -116,7 +173,7 @@ export class PersonajeError extends Error {
     // Establece el nombre del error como "PersonajeError"
 
     super(message);
-    throw new Error("Constructor no implementado");
+    throw new Error('Constructor no implementado');
     // ====================================
   }
 }
@@ -128,7 +185,7 @@ export class InventarioError extends Error {
     // Establece el nombre del error como "InventarioError"
 
     super(message);
-    throw new Error("Constructor no implementado");
+    throw new Error('Constructor no implementado');
     // ====================================
   }
 }
@@ -140,15 +197,12 @@ export class CombateError extends Error {
     // Establece el nombre del error como "CombateError"
 
     super(message);
-    throw new Error("Constructor no implementado");
+    throw new Error('Constructor no implementado');
     // ====================================
   }
 }
 
-export function atacar(
-  personaje: Personaje,
-  danio: number
-): Personaje {
+export function atacar(personaje: Personaje, danio: number): Personaje {
   // ========== TU CÓDIGO AQUÍ ==========
   // Si el personaje está muerto (vida <= 0), lanza PersonajeError con mensaje:
   //   "No se puede atacar a un personaje muerto"
@@ -157,7 +211,7 @@ export function atacar(
   // Si todo es válido, retorna un nuevo personaje con la vida reducida
   // (la vida no puede bajar de 0)
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -179,7 +233,7 @@ export function agregarItem(
   //   lanza InventarioError: "La cantidad debe ser positiva"
   // Si todo es válido, retorna un nuevo array con el item agregado
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -189,7 +243,7 @@ export function removerItem(inventario: Item[], nombreItem: string): Item[] {
   //   lanza InventarioError: "Item no encontrado: [nombreItem]"
   // Si existe, retorna un nuevo array sin ese item
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -210,7 +264,7 @@ export function procesarAccion(
   // Si no hay error, retorna { exito: true }
   // Si la acción no es reconocida, retorna { exito: false, error: "Acción desconocida" }
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -224,7 +278,7 @@ export function ejecutarAcciones(
   // Guarda los mensajes de error en un array
   // Retorna { exitosas: número, fallidas: número, errores: array de mensajes }
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -246,13 +300,14 @@ export function guardarPartida(
   //   - finally: NO hagas nada aquí, solo está para practicar la sintaxis
   // Pista: necesitas una variable fuera del try para guardar el resultado
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
-export function cargarPartida(
-  nombreArchivo: string
-): { personaje: Personaje | null; mensaje: string } {
+export function cargarPartida(nombreArchivo: string): {
+  personaje: Personaje | null;
+  mensaje: string;
+} {
   // ========== TU CÓDIGO AQUÍ ==========
   // Simula cargar una partida
   // Si nombreArchivo está vacío, lanza error "Nombre de archivo inválido"
@@ -262,7 +317,7 @@ export function cargarPartida(
   // Usa try/catch para manejar errores:
   //   - Si hay error, retorna { personaje: null, mensaje: mensaje del error }
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -288,7 +343,7 @@ export function validarCombate(
   //   "Nivel insuficiente para este combate"
   // Si todo es válido, retorna true
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -303,7 +358,7 @@ export function iniciarCombate(
   // Si no hay error:
   //   - Retorna { iniciado: true }
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -322,7 +377,7 @@ export function validarPersonajeCompleto(personaje: Personaje): string[] {
   // - Si vida > nivel * 100: "Vida demasiado alta para el nivel"
   // Retorna el array de errores (puede estar vacío si todo es válido)
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -336,7 +391,7 @@ export function crearPersonajeValidado(
   // Si hay errores, retorna { personaje: null, errores: array de errores }
   // Si no hay errores, retorna { personaje: el personaje creado, errores: [] }
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -353,7 +408,7 @@ export function procesarPersonajes(
   // Si no lanza error, guarda el personaje en validos
   // Retorna { validos: array de personajes, invalidos: array de mensajes de error }
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -367,7 +422,7 @@ export function atacarMultiples(
   // Si no lanza error, guarda el personaje resultante en atacados
   // Retorna { atacados: array de personajes, errores: array de mensajes }
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -387,7 +442,7 @@ export class PersonajeDetalladoError extends Error {
     // Establece this.name = "PersonajeDetalladoError"
 
     super();
-    throw new Error("Constructor no implementado");
+    throw new Error('Constructor no implementado');
     // ====================================
   }
 }
@@ -412,7 +467,7 @@ export function realizarAccionCompleja(
   //   - Si accion === "curar": aumenta vida por valor
   // Retorna el personaje modificado
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -431,20 +486,17 @@ export function obtenerPersonajeODefault(
   //   { nombre: "Desconocido", nivel: 1, vida: 10 }
   // NO lances errores en esta función
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
-export function operacionConFallback<T>(
-  operacion: () => T,
-  fallback: T
-): T {
+export function operacionConFallback<T>(operacion: () => T, fallback: T): T {
   // ========== TU CÓDIGO AQUÍ ==========
   // Usa try/catch para ejecutar la operación
   // Si la operación lanza un error, retorna fallback
   // Si no hay error, retorna el resultado de la operación
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
 
@@ -458,6 +510,6 @@ export function dividirConDefault(
   // Si hay error (división por cero), retorna valorDefault
   // Pista: pasa una función arrow que haga la división
 
-  throw new Error("Función no implementada");
+  throw new Error('Función no implementada');
   // ====================================
 }
